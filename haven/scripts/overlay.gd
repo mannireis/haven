@@ -25,6 +25,7 @@ func _sync() -> void:
 		player = get_tree().get_first_node_in_group("player") as Node2D
 		if player == null:
 			push_warning("Overlay: no node in group 'player'")
+			$"../..".visible = false
 			return
 
 	var m := material as ShaderMaterial

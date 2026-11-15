@@ -1,0 +1,70 @@
+[gd_resource type="Theme" format=3 uid="uid://b1t644yqmnxtb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wl1kw"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_omlnh"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_lvrds"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_im0sm"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p76rt"]
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+region_rect = Rect2(0, 0, 3, 3)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_23v15"]
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[resource]
+Button/fonts/font = null
+Button/styles/disabled = SubResource("StyleBoxTexture_wl1kw")
+Button/styles/hover = SubResource("StyleBoxTexture_omlnh")
+Button/styles/normal = SubResource("StyleBoxTexture_lvrds")
+Button/styles/pressed = SubResource("StyleBoxTexture_im0sm")
+Label/fonts/font = null
+LineEdit/fonts/font = null
+LineEdit/styles/focus = SubResource("StyleBoxTexture_p76rt")
+LineEdit/styles/normal = SubResource("StyleBoxTexture_p76rt")
+LineEdit/styles/read_only = SubResource("StyleBoxTexture_p76rt")
+PanelContainer/styles/panel = SubResource("StyleBoxTexture_23v15")
+RichTextLabel/fonts/bold_font = null
+RichTextLabel/fonts/italics_font = null
+RichTextLabel/fonts/normal_font = null

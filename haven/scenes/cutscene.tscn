@@ -1,0 +1,266 @@
+[gd_scene format=3 uid="uid://b1nweu8ilj4hh"]
+
+[ext_resource type="Texture2D" uid="uid://pqdiiat1bfu1" path="res://assets/sprites/cutscene.png" id="1_a320b"]
+[ext_resource type="Script" uid="uid://b3retjuognfxs" path="res://scripts/cutscene.gd" id="1_bb0yx"]
+[ext_resource type="FontFile" uid="uid://cvh0krg1x26b5" path="res://scenes/chicago.png" id="1_edmg7"]
+[ext_resource type="Texture2D" uid="uid://cgi2oijpg0d54" path="res://assets/sprites/controls.png" id="2_0sipp"]
+[ext_resource type="Texture2D" uid="uid://dabp856s8awyl" path="res://assets/sprites/panel.png" id="4_2bm7f"]
+[ext_resource type="Texture2D" uid="uid://blwcy16uwikdr" path="res://assets/sprites/panel_pressed.png" id="5_fs8wb"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_0sipp"]
+texture = ExtResource("4_2bm7f")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bb0yx"]
+texture = ExtResource("5_fs8wb")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3ptll"]
+texture = ExtResource("5_fs8wb")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_d18fx"]
+texture = ExtResource("4_2bm7f")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_75brc"]
+texture = ExtResource("4_2bm7f")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="Animation" id="Animation_bb0yx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_0sipp"]
+resource_name = "cutscene"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Label:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Label2:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.0333333, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2bm7f"]
+_data = {
+&"RESET": SubResource("Animation_bb0yx"),
+&"cutscene": SubResource("Animation_0sipp")
+}
+
+[node name="cutscene" type="Control" unique_id=674889584]
+z_index = 25
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bb0yx")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1595567105]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_a320b")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1134216202]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_0sipp")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1873142995]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 195
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2019902083]
+layout_mode = 2
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer" unique_id=1323113772]
+propagate_maximum_size = true
+clip_contents = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("1_edmg7")
+text = "aspen is walking in the enchanted forest one evening when a vampire suddenly bites them. The vampire dies on the spot from an old curse that if you bit a a pure non-binary you would die and on the last breath the vampire, curses aspen. Now aspen is blind, but can see through echolocation. But. Beware. Every sound you make can be heard by the villagers hunting them for the vampire's crimes. So stay quiet and alive, take down all the villagers before the take you down."
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer" unique_id=273671733]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_edmg7")
+theme_override_styles/normal = SubResource("StyleBoxTexture_0sipp")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_bb0yx")
+theme_override_styles/hover = SubResource("StyleBoxTexture_3ptll")
+theme_override_styles/disabled = SubResource("StyleBoxTexture_d18fx")
+theme_override_styles/focus = SubResource("StyleBoxTexture_75brc")
+text = "continue"
+
+[node name="Label" type="Label" parent="." unique_id=743678437]
+visible = false
+layout_mode = 0
+offset_left = 2.0
+offset_top = 169.0
+offset_right = 164.0
+offset_bottom = 176.0
+theme_override_fonts/font = ExtResource("1_edmg7")
+text = "Left Click to Bite | Right Click to trigger sonar"
+
+[node name="Label2" type="Label" parent="." unique_id=715596176]
+visible = false
+layout_mode = 0
+offset_left = 203.0
+offset_top = 113.0
+offset_right = 299.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("1_edmg7")
+text = "WASD Space To walk around 
+ Q while on wall to climb"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1917626294]
+libraries/ = SubResource("AnimationLibrary_2bm7f")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_pressed"]
