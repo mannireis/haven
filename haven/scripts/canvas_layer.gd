@@ -11,11 +11,13 @@ const PROBE_STEPS := 3
 @export var bounce_energy := 0.6
 @export var min_energy := 0.1
 @export var trail_length := 18.0
-@export var ray_width := 1.5
+@export var ray_width := 1
 @export var mark_lifetime := 4.0
 @export var edge_half_length := 12.0
 @export var draw_edge_lines := true
 @export var color_ramp: Gradient
+@export var color_speed := 2.0
+@export var merge_radius := 5.0
 
 var marks: Array = []
 var _rays: Array = []
@@ -25,9 +27,9 @@ func _ready() -> void:
 	add_to_group("echo_manager")
 	if color_ramp == null:
 		color_ramp = Gradient.new()
-		color_ramp.set_color(0, Color(0.6, 0.9, 1.0))    # cyan
-		color_ramp.set_color(1, Color(1.0, 0.3, 0.6))    # magenta
-		color_ramp.add_point(0.5, Color(1.0, 0.9, 0.4))  # yellow
+		color_ramp.set_color(0, Color(0.6, 0.9, 1.0))
+		color_ramp.set_color(1, Color(1.0, 0.3, 0.6))
+		color_ramp.add_point(0.5, Color(1.0, 0.9, 0.4))
 
 
 func emit(world_pos: Vector2, source: CollisionObject2D = null) -> void:
@@ -46,9 +48,13 @@ func emit(world_pos: Vector2, source: CollisionObject2D = null) -> void:
 		})
 
 
-func _ray_color(dist: float, bounces: int) -> Color:
+func _ray_t(dist: float, bounces: int) -> float:
 	var t := maxf(dist / max_distance, float(bounces) / float(max_bounces))
-	return color_ramp.sample(clampf(t * 2, 0.0, 1.0))
+	return clampf(t * color_speed, 0.0, 1.0)
+
+
+func _ray_color(dist: float, bounces: int) -> Color:
+	return color_ramp.sample(_ray_t(dist, bounces))
 
 
 func _physics_process(delta: float) -> void:
@@ -71,7 +77,7 @@ func _physics_process(delta: float) -> void:
 			var hit_pos: Vector2 = res["position"]
 			var normal: Vector2 = res["normal"]
 			r["dist"] += from.distance_to(hit_pos)
-			_add_mark(space, hit_pos, normal, r["energy"], r["ex"], _ray_color(r["dist"], r["bounces"]))
+			_add_mark(space, hit_pos, normal, r["energy"], r["ex"], _ray_t(r["dist"], r["bounces"]))
 			r["bounces"] += 1
 			r["energy"] *= bounce_energy
 			r["dir"] = (r["dir"] as Vector2).bounce(normal)
@@ -81,18 +87,35 @@ func _physics_process(delta: float) -> void:
 			_rays.remove_at(i)
 
 
-func _add_mark(space: PhysicsDirectSpaceState2D, pos: Vector2, normal: Vector2, energy: float, exclude: Array, col: Color) -> void:
-	if marks.size() >= MAX_MARKS:
-		marks.pop_front()
-	marks.append({
+func _add_mark(space: PhysicsDirectSpaceState2D, pos: Vector2, normal: Vector2, energy: float, exclude: Array, t: float) -> void:
+	var merge_r2 := merge_radius * merge_radius
+	var existing := -1
+	for i in marks.size():
+		var m: Dictionary = marks[i]
+		if (m["pos"] as Vector2).distance_squared_to(pos) <= merge_r2 and (m["normal"] as Vector2).dot(normal) > 0.7:
+			existing = i
+			break
+
+	if existing != -1 and t >= (marks[existing] as Dictionary)["t"] - 0.001:
+		return
+
+	var mark := {
 		"pos": pos,
 		"normal": normal,
 		"age": 0.0,
 		"energy": energy,
-		"col": col,
+		"t": t,
+		"col": color_ramp.sample(t),
 		"a": _surface_extent(space, pos, normal, -1.0, exclude),
 		"b": _surface_extent(space, pos, normal, 1.0, exclude),
-	})
+	}
+
+	if existing != -1:
+		marks[existing] = mark
+	else:
+		if marks.size() >= MAX_MARKS:
+			marks.pop_front()
+		marks.append(mark)
 
 
 func _surface_extent(space: PhysicsDirectSpaceState2D, pos: Vector2, normal: Vector2, sgn: float, exclude: Array) -> float:

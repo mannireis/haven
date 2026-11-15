@@ -1,5 +1,27 @@
 [gd_scene format=3 uid="uid://dt54xpcspysm"]
 
+[ext_resource type="Script" uid="uid://cp6qc00gva3gg" path="res://scenes/level_select.gd" id="1_3shnc"]
+[ext_resource type="Texture2D" uid="uid://cgogrh5t7dmvk" path="res://assets/sprites/background.png" id="2_p0wlc"]
+[ext_resource type="FontFile" uid="uid://cvh0krg1x26b5" path="res://scenes/chicago.png" id="3_chg43"]
+[ext_resource type="Texture2D" uid="uid://dabp856s8awyl" path="res://assets/sprites/panel.png" id="4_r77uv"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wf1d5"]
+texture = ExtResource("2_p0wlc")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_p0wlc"]
+texture = ExtResource("4_r77uv")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7plkq"]
+texture = ExtResource("4_r77uv")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+
 [node name="level_select" type="Control" unique_id=1420882555]
 layout_mode = 3
 anchors_preset = 15
@@ -7,3 +29,60 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3shnc")
+
+[node name="Panel" type="Panel" parent="." unique_id=1100809809]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_wf1d5")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=247807064]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MarginContainer" unique_id=783488048]
+layout_mode = 2
+alignment = 1
+
+[node name="Button" type="Button" parent="Panel/MarginContainer/HBoxContainer" unique_id=429105592]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_chg43")
+theme_override_styles/normal = SubResource("StyleBoxTexture_p0wlc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7plkq")
+text = "Level 1"
+
+[node name="Button2" type="Button" parent="Panel/MarginContainer/HBoxContainer" unique_id=749668254]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_chg43")
+theme_override_styles/normal = SubResource("StyleBoxTexture_p0wlc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7plkq")
+text = "Level 2"
+
+[node name="Button3" type="Button" parent="Panel/MarginContainer/HBoxContainer" unique_id=623252961]
+propagate_maximum_size = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("3_chg43")
+theme_override_styles/normal = SubResource("StyleBoxTexture_p0wlc")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7plkq")
+text = "Level 3"
+
+[connection signal="pressed" from="Panel/MarginContainer/HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/HBoxContainer/Button3" to="." method="_on_button_3_pressed"]

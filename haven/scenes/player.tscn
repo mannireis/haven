@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bp2ki1otyagkc"]
 
 [ext_resource type="Script" uid="uid://nk53obbfx5h" path="res://scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="AudioStream" uid="uid://bh85wri6q4kcw" path="res://assets/cartoon_bite_sound_effect.mp3" id="2_dqkch"]
 [ext_resource type="AudioStream" uid="uid://clk8bof5mqn4o" path="res://assets/Blip.wav" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://d10kbmfltequn" path="res://assets/sprites/player.png" id="3_qhqgy"]
+[ext_resource type="Script" uid="uid://wad5g8jadcue" path="res://scripts/echolight.gd" id="5_qlg0r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8vuu"]
 size = Vector2(8, 14)
@@ -225,6 +227,9 @@ script = ExtResource("1_3vyb7")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_u8vuu")
 
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="." unique_id=146027141]
+stream = ExtResource("2_dqkch")
+
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=507663947]
 stream = ExtResource("2_g2els")
 
@@ -240,6 +245,8 @@ wait_time = 0.1
 one_shot = true
 
 [node name="AttackCooldownTimer" type="Timer" parent="." unique_id=2125940548]
+wait_time = 0.5
+one_shot = true
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=523829866]
 wait_time = 3.0
@@ -255,6 +262,7 @@ shape = SubResource("CircleShape2D_wf1d5")
 target_position = Vector2(8, 0)
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1383087245]
+z_index = 794
 material = SubResource("CanvasItemMaterial_wf1d5")
 position = Vector2(6, -2)
 emitting = false
@@ -281,6 +289,9 @@ angle_max = 23.0
 color_ramp = SubResource("Gradient_qhqgy")
 hue_variation_min = -0.27
 hue_variation_max = 0.26
+
+[node name="Node2D" type="Node2D" parent="." unique_id=757564968]
+script = ExtResource("5_qlg0r")
 
 [connection signal="area_entered" from="AttackArea2D" to="." method="_on_attack_area_2d_area_entered"]
 [connection signal="area_exited" from="AttackArea2D" to="." method="_on_attack_area_2d_area_exited"]

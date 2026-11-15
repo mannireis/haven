@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bdxvqmd0yexdo"]
+[gd_scene format=4 uid="uid://bdxvqmd0yexdo"]
 
 [ext_resource type="Shader" uid="uid://bnwne74ioo3n8" path="res://assets/shaders/overlay.gdshader" id="1_wgpbc"]
 [ext_resource type="Script" uid="uid://c8nlhaklblqn3" path="res://scripts/overlay.gd" id="2_6jy00"]
@@ -8,11 +8,13 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_kyfjp"]
 shader = ExtResource("1_wgpbc")
 shader_parameter/viewport_size = Vector2(320, 180)
-shader_parameter/tint = Color(0.6, 0.9, 1, 1)
-shader_parameter/player_pos = Vector2(0, 0)
-shader_parameter/player_inner = 8.0
-shader_parameter/player_outer = 24.0
-shader_parameter/player_strength = 0.8
+shader_parameter/zoom = 1.0
+shader_parameter/light_count = 0
+shader_parameter/light_pos = PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/light_inner = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/light_outer = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/light_strength = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/light_color = PackedVector4Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
 
 [sub_resource type="Gradient" id="Gradient_dvny0"]
 offsets = PackedFloat32Array(0, 0.25, 0.5, 0.7, 1)

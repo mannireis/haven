@@ -1,6 +1,5 @@
 extends CharacterBody2D
 
-# 70% comments 30% ai code
 @onready var coyote_timer: Timer = $CoyoteTimer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var attack_area_2d: Area2D = $AttackArea2D
@@ -28,7 +27,7 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-		
+
 		if wall_ray_cast_2d.is_colliding() and not is_on_floor():
 			if Input.is_action_pressed("climb"):
 				var direction_y := Input.get_axis("up", "down")
@@ -49,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		velocity.y *= 0.8
 
 	var direction := Input.get_axis("left", "right")
-	
+
 	if direction:
 		velocity.x = direction * speed
 	else:
@@ -62,14 +61,14 @@ func _physics_process(delta: float) -> void:
 		attack_area_2d.position.x = 6.0
 		wall_ray_cast_2d.target_position.x = 8
 		cpu_particles_2d.position.x = 6.0
-	
-	
+
+
 	_was_in_air = is_on_floor()
 	_was_on_floor = is_on_floor()
-	
+
 	var fall_speed := velocity.y
 	move_and_slide()
-	
+
 	if is_on_floor() and not _was_on_floor and fall_speed > 150.0:
 		_landing = true
 		animated_sprite_2d.play("land")
@@ -103,10 +102,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		Raycast.get_node("EchoLayer/EchoManager").max_distance == 900.0
 		Raycast.get_node("EchoLayer/EchoManager").max_bounces == 3
 		Raycast.get_node("EchoLayer/EchoManager").emit(global_position, self)
+		var pitch = randf_range(0.9, 1.1);
+		$AudioStreamPlayer2D.pitch_scale = pitch
 		$AudioStreamPlayer2D.play()
 		cooldown_timer.start()
 	if Input.is_action_just_pressed("attack") and attack_cooldown_timer.is_stopped():
 		_attacking = true
+		var pitch = randf_range(0.9, 1.1);
+		$AudioStreamPlayer2D2.pitch_scale = pitch
+		$AudioStreamPlayer2D2.play()
+		attack_cooldown_timer.start()
 		if _in_area:
 			for area in attack_area_2d.get_overlapping_areas():
 				if area.get_parent().is_in_group("enemy"):

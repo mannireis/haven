@@ -26,7 +26,7 @@ func _ready() -> void:
 		animated_sprite_3.flip_h = false
 		animated_sprite_4.flip_h = false
 		animated_sprite_5.flip_h = false
-	
+
 	if enemy_type == EnemyType.ONE:
 		animated_sprite_1.show()
 		animated_sprite_2.hide()
@@ -62,15 +62,18 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
-	
+
 	if health <= 0:
 		queue_free()
-	
-	
+
+
 	sound += 1
 	print(sound)
-	if sound == 1024:
+	if sound == randf_range(1000, 5000):
 		sound = 0
+		var pitch = randf_range(0.9, 1.1);
+		$AudioStreamPlayer2D.pitch_scale = pitch
+		$AudioStreamPlayer2D.play()
 		Raycast.get_node("EchoLayer/EchoManager").max_distance == 32.0
 		Raycast.get_node("EchoLayer/EchoManager").max_bounces == 2
 		Raycast.get_node("EchoLayer/EchoManager").emit(global_position, self)
@@ -79,6 +82,9 @@ func _physics_process(delta: float) -> void:
 
 func damage(damage: int):
 	health -= damage
+	var pitch = randf_range(0.9, 1.1);
+	$AudioStreamPlayer2D2.pitch_scale = pitch
+	$AudioStreamPlayer2D2.play()
 	Raycast.get_node("EchoLayer/EchoManager").max_distance == 48.0
 	Raycast.get_node("EchoLayer/EchoManager").max_bounces == damage
 	Raycast.get_node("EchoLayer/EchoManager").emit(global_position, self)
