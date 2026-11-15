@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://bdxvqmd0yexdo"]
+
+[ext_resource type="Shader" uid="uid://bnwne74ioo3n8" path="res://assets/shaders/overlay.gdshader" id="1_wgpbc"]
+[ext_resource type="Script" uid="uid://c8nlhaklblqn3" path="res://scripts/overlay.gd" id="2_6jy00"]
+[ext_resource type="Script" uid="uid://bonv2j72vp2x8" path="res://scripts/mask_drawer.gd" id="3_6v8ps"]
+[ext_resource type="Script" uid="uid://bas6wgnlmki2l" path="res://scripts/canvas_layer.gd" id="4_as3nu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kyfjp"]
+shader = ExtResource("1_wgpbc")
+shader_parameter/viewport_size = Vector2(320, 180)
+shader_parameter/tint = Color(0.6, 0.9, 1, 1)
+shader_parameter/player_pos = Vector2(0, 0)
+shader_parameter/player_inner = 8.0
+shader_parameter/player_outer = 24.0
+shader_parameter/player_strength = 0.8
+
+[sub_resource type="Gradient" id="Gradient_dvny0"]
+offsets = PackedFloat32Array(0, 0.25, 0.5, 0.7, 1)
+colors = PackedColorArray(1, 0.92941177, 0.25490198, 1, 0.9764706, 0.21960784, 0, 1, 0.83137256, 0, 0.23921569, 1, 0.47843137, 0, 0.49803922, 1, 0.15294118, 0, 0.41568628, 1)
+
+[node name="Raycast" type="CanvasLayer" unique_id=394675307]
+
+[node name="RevealLayer" type="CanvasLayer" parent="." unique_id=701398408]
+layer = 5
+
+[node name="Overlay" type="ColorRect" parent="RevealLayer" unique_id=496429150]
+material = SubResource("ShaderMaterial_kyfjp")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+color = Color(1, 1, 1, 0)
+script = ExtResource("2_6jy00")
+
+[node name="SubViewport" type="SubViewport" parent="RevealLayer" unique_id=741004517]
+transparent_bg = true
+
+[node name="MaskDrawer" type="Node2D" parent="RevealLayer/SubViewport" unique_id=476713458]
+script = ExtResource("3_6v8ps")
+edge_width = 2.0
+
+[node name="EchoLayer" type="CanvasLayer" parent="." unique_id=1520143716]
+layer = 10
+follow_viewport_enabled = true
+
+[node name="EchoManager" type="Node2D" parent="EchoLayer" unique_id=374111057]
+script = ExtResource("4_as3nu")
+rays_per_pulse = 128
+ray_speed = 250.0
+max_bounces = 4
+bounce_energy = 1.0
+trail_length = 5.0
+ray_width = 1.0
+mark_lifetime = 5.0
+color_ramp = SubResource("Gradient_dvny0")
