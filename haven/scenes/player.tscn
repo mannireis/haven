@@ -7,6 +7,42 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u8vuu"]
 size = Vector2(8, 14)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4r1p"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d2wvv"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3v2ag"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(48, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jej6c"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f1ej7"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oprun"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a8ls1"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(32, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qfm1y"]
+atlas = ExtResource("3_qhqgy")
+region = Rect2(48, 32, 16, 16)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("3_qhqgy")
 region = Rect2(0, 0, 16, 16)
@@ -35,6 +71,43 @@ region = Rect2(80, 0, 16, 16)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_qhqgy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4r1p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d2wvv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3v2ag")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jej6c")
+}],
+"loop": 0,
+"name": &"bite",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f1ej7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oprun")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a8ls1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qfm1y")
+}],
+"loop": 1,
+"name": &"climb",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_dqkch")
 }, {
 "duration": 1.0,
@@ -60,6 +133,15 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_wf1d5"]
 radius = 4.0
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_wf1d5"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id="Gradient_qhqgy"]
+colors = PackedColorArray(1, 0, 0, 1, 0.46832657, 1.100991e-06, 1.6845763e-07, 1)
+
 [node name="Player" type="CharacterBody2D" unique_id=766676307]
 script = ExtResource("1_3vyb7")
 
@@ -72,25 +154,55 @@ stream = ExtResource("2_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1677470240]
 sprite_frames = SubResource("SpriteFrames_wf1d5")
-animation = &"idle"
+animation = &"climb"
 autoplay = "idle"
-frame_progress = 0.25974625
 
 [node name="CoyoteTimer" type="Timer" parent="." unique_id=96525172]
 wait_time = 0.1
 one_shot = true
 
-[node name="Timer2" type="Timer" parent="." unique_id=2125940548]
+[node name="AttackCooldownTimer" type="Timer" parent="." unique_id=2125940548]
 
 [node name="CooldownTimer" type="Timer" parent="." unique_id=523829866]
 wait_time = 3.0
 one_shot = true
 
 [node name="AttackArea2D" type="Area2D" parent="." unique_id=293509242]
-position = Vector2(10, 0)
+position = Vector2(6, -2)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea2D" unique_id=873740166]
 shape = SubResource("CircleShape2D_wf1d5")
 
 [node name="WallRayCast2D" type="RayCast2D" parent="." unique_id=1040198466]
 target_position = Vector2(8, 0)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="." unique_id=1383087245]
+material = SubResource("CanvasItemMaterial_wf1d5")
+position = Vector2(6, -2)
+emitting = false
+amount = 128
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.13
+particle_flag_align_y = true
+spread = 180.0
+gravity = Vector2(0, 500)
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+angular_velocity_min = -530.74
+angular_velocity_max = 105.54
+radial_accel_min = -16.01
+radial_accel_max = 48.0
+tangential_accel_min = -12.57
+tangential_accel_max = 36.57
+damping_min = 16.0
+damping_max = 16.0
+angle_max = 23.0
+color_ramp = SubResource("Gradient_qhqgy")
+hue_variation_min = -0.27
+hue_variation_max = 0.26
+
+[connection signal="area_entered" from="AttackArea2D" to="." method="_on_attack_area_2d_area_entered"]
+[connection signal="area_exited" from="AttackArea2D" to="." method="_on_attack_area_2d_area_exited"]
