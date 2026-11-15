@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="haven"
-run/main_scene="uid://bp2ki1otyagkc"
+run/main_scene="uid://c2g4cuboxv342"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
